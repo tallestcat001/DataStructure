@@ -6,7 +6,15 @@ template<typename T>
 class DoubleLinkedList
 {
 private:
+
     int size;
+
+	struct Node;
+
+	Node* head;
+	Node* tail;
+
+public:
 
 	struct Node
 	{
@@ -15,10 +23,6 @@ private:
 		Node* previous;
 	};
 
-	Node* head;
-	Node* tail;
-
-public:
 	DoubleLinkedList()
 	{
 		size = 0;
@@ -51,13 +55,31 @@ public:
 
 	void PopFront()
 	{
-		if (haed != nullptr)
+		if (head != nullptr)
 		{
-			if (size == 1)
+			if (head == tail)
 			{
-
+				Node* deleteNode = new Node;
+				deleteNode = head;
+				head = nullptr;
+				tail = head;
+				delete deleteNode;
+			}
+			else
+			{
+				Node* deleteNode = new Node;
+				deleteNode = head;
+				deleteNode->next->previous = nullptr;
+				head = head->next;
+				delete deleteNode;
 			}
 		}
+		else
+		{
+			cout << "Linked List is Empty" << endl;
+		}
+
+		size--;
 	}
 
 	void PushBack(T data)
@@ -110,7 +132,45 @@ public:
 		size--;
 	}
 
-	int & size()
+	Node* Begin()
+	{
+		return head;
+	}
+
+	void Insert(Node* Position, T data)
+	{
+		if (head == nullptr)
+		{
+			PushBack(data);
+		}
+		else
+		{
+			Node* previousNode = Position;
+			Node* nextNode = Position->next;
+
+			if (nextNode == nullptr)
+			{
+				PushBack(data);
+			}
+			else if (previousNode->previous == nullptr)
+			{
+				PushFront(data);
+			}
+			else
+			{
+				Node* newNode = new Node;
+				newNode->data = data;
+				newNode->next = nextNode;
+				newNode->previous = previousNode;
+				previousNode->next = newNode;
+				nextNode->previous = newNode;
+				
+				size++;
+			}
+		}
+	}
+
+	int & Size()
 	{
 		return size;
 	}
@@ -126,15 +186,24 @@ public:
 		}
 	}
 
+	~DoubleLinkedList()
+	{
+		while (head != nullptr)
+		{
+			PopFront();
+		}
+	}
+
 };
 
 int main()
 {
 	DoubleLinkedList<int> list;
-	list.PushFront(15);
-	list.PushFront(25);
-	list.PushFront(35);
-	cout << "DoubleLinkedList의 size는 : " << list.size() << endl;
+	list.PushFront(10);
+	list.PushFront(20);
+	list.PushFront(30);
+	list.Insert(list.Begin()->next, 40);
 	list.Show();
+	cout << "현재 리스트의 size는 : " << list.Size() << endl;
     return 0;
 }
