@@ -140,11 +140,5 @@ public:
 int main()
 {
     SingleLinkedList<int> list;
-    list.PushBack(10);
-    list.PushBack(20);
-    list.PushBack(30);
-    list.PopBack();
-    list.Show();
-
     return 0;
 }

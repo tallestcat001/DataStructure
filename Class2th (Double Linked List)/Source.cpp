@@ -199,11 +199,5 @@ public:
 int main()
 {
 	DoubleLinkedList<int> list;
-	list.PushFront(10);
-	list.PushFront(20);
-	list.PushFront(30);
-	list.Insert(list.Begin()->next, 40);
-	list.Show();
-	cout << "현재 리스트의 size는 : " << list.Size() << endl;
 	return 0;
 }

@@ -1,152 +1,100 @@
 ﻿#include <iostream>
 
+#define SIZE 10
+
 using namespace std;
 
 template<typename T>
-class CircleLinkedList
+class Stack
 {
 private:
 
-    int size;
-
-    struct Node
-    {
-        T data;
-        Node* next;
-    };
-
-    Node* head;
+    int top;
+    T container[SIZE];
 
 public:
-
-    CircleLinkedList()
+    
+    Stack()
     {
-        size = 0;
-        head = nullptr;
+        top = -1;
+
+        for (int i = 0; i < SIZE; i++)
+        {
+            container[i] = 0;
+        }
+
     }
 
-    void PushBack(T data)
+    void Push(T data)
     {
-
-        Node* newNode = new Node;
-        newNode->data = data;
-
-        if (head == nullptr)
+        if (SIZE <= top)
         {
-            head = newNode;
-            newNode->next = head;
+            cout << "Stack OverFlow" << endl;
         }
         else
         {
-            newNode->next = head->next;
-            head->next = newNode;
-            head = newNode;
+            container[++top] = data;
         }
-
-        size++;
-
     }
 
-    void PopBack()
+    void Pop()
     {
-        Node* deleteNode = head;
-        Node* currentNode = head;
-
-        if (head != nullptr)
+        if (Empty())
         {
-            if (head == head->next)
-            {
-                head = nullptr;
-                delete deleteNode;
-            }
-            else
-            {
-                for (int i = 0; i < size - 1; i++)
-                {
-                    currentNode = currentNode->next;
-                }
-                currentNode->next = head->next;
-                head = currentNode;
-                delete deleteNode;
-            }
-
-            size--;
-
+            cout << "Stack is Empty" << endl;
         }
         else
         {
-            cout << "Linked List is Empty" << endl;
+            top--;
         }
     }
 
-    void PushFront(T data)
+    bool Empty()
     {
-        Node* newNode = new Node;
-        newNode->data = data;
-
-        if (head == nullptr)
+        if (top <= -1)
         {
-            head = newNode;
-            newNode->next = head;
+            return true;
         }
         else
         {
-            newNode->next = head->next;
-            head->next = newNode;
+            return false;
         }
-
-        size++;
-
     }
 
-    void PopFront()
+    int & Size()
     {
-        Node* deleteNode = head->next;
-
-        if (head != nullptr)
-        {
-            if (head == head->next)
-            {
-                head = nullptr;
-                delete deleteNode;
-            }
-            else
-            {
-                head->next = deleteNode->next;
-                delete deleteNode;
-            }
-
-            size--;
-        }
-        else
-        {
-            cout << "Linked List is Empty" << endl;
-        }
+        return top;
     }
 
-    void Show()
+    T & Top()
     {
-        if (head != nullptr)
-        {
-            Node* currentNode = head->next;
-
-            for (int i = 0; i < size; i++)
-            {
-                cout << currentNode->data << endl;
-                currentNode = currentNode->next;
-            }
-        }
+       return container[top];
     }
-
 };
+
+bool CheckBracket(string content)
+{
+    if (content.length() <= 0)
+    {
+        return false;
+    }
+
+}
 
 int main()
 {
-    CircleLinkedList<int> list;
-    list.PushBack(20);
-    list.PushBack(30);
-    list.PushBack(40);
-    list.PopBack();
-    list.Show();
+    Stack<int> stack;
+    stack.Push(10);
+    stack.Push(20);
+    stack.Push(30);
+    stack.Push(40);
+    stack.Push(50);
+
+    while (stack.Empty() == false)
+    {
+        cout << stack.Top() << endl;
+        stack.Pop();
+    }
+
     return 0;
 }
