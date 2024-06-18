@@ -1,39 +1,40 @@
 ﻿#include <iostream>
 
-#define SIZE 10
+#define SIZE 5
 
 using namespace std;
 
 template<typename T>
-class Stack
+class CircleQueue
 {
 private:
-
-    int top;
+    int rear;
+    int front;
+    int size;
     T container[SIZE];
-
 public:
-    
-    Stack()
+    CircleQueue()
     {
-        top = -1;
-
         for (int i = 0; i < SIZE; i++)
         {
-            container[i] = 0;
+            container[i] = NULL;
         }
 
+        rear = SIZE - 1;
+        front = SIZE - 1;
+        size = 0;
     }
 
     void Push(T data)
     {
-        if (SIZE <= top)
+        if (front == (rear + 1) % SIZE)
         {
-            cout << "Stack OverFlow" << endl;
+            cout << "Queue OverFlow" << endl;
         }
         else
         {
-            container[++top] = data;
+            container[rear++ % SIZE] = data;
+            size++;
         }
     }
 
@@ -41,17 +42,42 @@ public:
     {
         if (Empty())
         {
-            cout << "Stack is Empty" << endl;
+            cout << "Queue is Empty" << endl;
         }
         else
         {
-            top--;
+            container[front++ % SIZE] = NULL;
+            size--;
+        }
+    }
+
+    T& Front()
+    {
+        if (Empty())
+        {
+            exit(1);
+        }
+        else
+        {
+            return container[front];
+        }
+    }
+
+    T& Back()
+    {
+        if (Empty())
+        {
+            exit(1);
+        }
+        else
+        {
+            return container[rear - 1];
         }
     }
 
     bool Empty()
     {
-        if (top <= -1)
+        if (front == rear)
         {
             return true;
         }
@@ -61,40 +87,24 @@ public:
         }
     }
 
-    int & Size()
-    {
-        return top;
-    }
-
-    T & Top()
-    {
-       return container[top];
-    }
 };
-
-bool CheckBracket(string content)
-{
-    if (content.length() <= 0)
-    {
-        return false;
-    }
-
-}
 
 int main()
 {
-    Stack<int> stack;
-    stack.Push(10);
-    stack.Push(20);
-    stack.Push(30);
-    stack.Push(40);
-    stack.Push(50);
+    CircleQueue<int> queue;
+    queue.Push(10);
+    queue.Push(20);
+    queue.Push(30);
+    queue.Push(40);
 
-    while (stack.Empty() == false)
+    while (queue.Empty() == false)
     {
-        cout << stack.Top() << endl;
-        stack.Pop();
+        cout << queue.Front() << endl;
+        queue.Pop();
     }
+    
+    queue.Push(50);
+    cout << queue.Front() << endl;
 
     return 0;
 }
