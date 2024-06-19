@@ -1,89 +1,85 @@
 ﻿#include <iostream>
 
-#define SIZE 5
-
 using namespace std;
 
 template<typename T>
-class CircleQueue
+class Vector
 {
 private:
-    int rear;
-    int front;
     int size;
-    T container[SIZE];
+    int capacity;
+    T* container;
 public:
-    CircleQueue()
+    Vector()
     {
-        for (int i = 0; i < SIZE; i++)
-        {
-            container[i] = NULL;
-        }
-
-        rear = SIZE - 1;
-        front = SIZE - 1;
         size = 0;
+        capacity = 0;
+        container = nullptr;
     }
 
-    void Push(T data)
+    void Resize(int Newsize)
     {
-        if (front == (rear + 1) % SIZE)
+        capacity = Newsize;
+
+        T* Newcontainer = new T[capacity];
+
+        for (int i = 0; i < capacity; i++)
         {
-            cout << "Queue OverFlow" << endl;
+            Newcontainer[i] = NULL;
         }
-        else
+
+        for (int i = 0; i < size; i++)
         {
-            container[rear++ % SIZE] = data;
-            size++;
+            Newcontainer[i] = container[i];
         }
+
+        if(container != nullptr)
+        { 
+            delete[] container;
+        }
+
+        container = Newcontainer;
     }
 
-    void Pop()
+    int& Size()
     {
-        if (Empty())
-        {
-            cout << "Queue is Empty" << endl;
-        }
-        else
-        {
-            container[front++ % SIZE] = NULL;
-            size--;
-        }
+        return size;
     }
 
-    T& Front()
+    void PushBack(T data)
     {
-        if (Empty())
+        if (capacity <= 0)
         {
-            exit(1);
+            Resize(1);
         }
-        else
+        else if(size >= capacity)
         {
-            return container[front];
+            Resize(capacity * 2);
         }
+
+        container[size++] = data;
     }
 
-    T& Back()
+    void PopBack()
     {
-        if (Empty())
-        {
-            exit(1);
-        }
-        else
-        {
-            return container[rear - 1];
-        }
+
+    }
+    
+    void Reserve(int Newsize)
+    {
+
     }
 
-    bool Empty()
+    T & operator [] (const int index)
     {
-        if (front == rear)
+        return container[index];
+    }
+
+    ~Vector()
+    {
+        if (container != nullptr)
         {
-            return true;
-        }
-        else
-        {
-            return false;
+            delete[] container;
         }
     }
 
@@ -91,20 +87,15 @@ public:
 
 int main()
 {
-    CircleQueue<int> queue;
-    queue.Push(10);
-    queue.Push(20);
-    queue.Push(30);
-    queue.Push(40);
+    Vector<int> vector;
+    vector.PushBack(10);
+    vector.PushBack(20);
+    vector.PushBack(30);
 
-    while (queue.Empty() == false)
+    for (int i = 0; i < vector.Size(); i++)
     {
-        cout << queue.Front() << endl;
-        queue.Pop();
+        cout << vector[i] << endl;
     }
-    
-    queue.Push(50);
-    cout << queue.Front() << endl;
 
     return 0;
 }
