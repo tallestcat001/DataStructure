@@ -1,44 +1,53 @@
 ﻿#include <iostream>
 
+#pragma warnings(disable: 4996)
+
 using namespace std;
 
-template<typename T>
-class Vector
+class String
 {
 private:
+    char* container;
     int size;
-    int capacity;
-    T* container;
 public:
-    Vector()
+    String()
     {
         size = 0;
-        capacity = 0;
         container = nullptr;
     }
 
-    void Resize(int Newsize)
+    void operator = (const char* content)
     {
-        capacity = Newsize;
+        int arraysize = strlen(content) + 1;
+        size = strlen(content);
 
-        T* Newcontainer = new T[capacity];
-
-        for (int i = 0; i < capacity; i++)
+        if (container == nullptr)
         {
-            Newcontainer[i] = NULL;
-        }
+            container = new char[arraysize];
 
-        for (int i = 0; i < size; i++)
+            for (int i = 0; i < arraysize; i++)
+            {
+                container[i] = content[i];
+            }
+        }
+        else
         {
-            Newcontainer[i] = container[i];
-        }
+            char* newcontainer = new char[arraysize];
 
-        if(container != nullptr)
-        { 
-            delete[] container;
-        }
+            for (int i = 0; i < arraysize; i++)
+            {
+                newcontainer[i] = content[i];
+            }
 
-        container = Newcontainer;
+            delete container;
+
+            container = newcontainer;
+        }
+    }
+
+    char operator [] (int index)
+    {
+        return container[index];
     }
 
     int& Size()
@@ -46,56 +55,21 @@ public:
         return size;
     }
 
-    void PushBack(T data)
+    int Compare(const char * content)
     {
-        if (capacity <= 0)
-        {
-            Resize(1);
-        }
-        else if(size >= capacity)
-        {
-            Resize(capacity * 2);
-        }
-
-        container[size++] = data;
-    }
-
-    void PopBack()
-    {
-
-    }
-    
-    void Reserve(int Newsize)
-    {
-
-    }
-
-    T & operator [] (const int index)
-    {
-        return container[index];
-    }
-
-    ~Vector()
-    {
-        if (container != nullptr)
-        {
-            delete[] container;
-        }
+        
     }
 
 };
 
 int main()
 {
-    Vector<int> vector;
-    vector.PushBack(10);
-    vector.PushBack(20);
-    vector.PushBack(30);
-
-    for (int i = 0; i < vector.Size(); i++)
-    {
-        cout << vector[i] << endl;
-    }
+    
+    String string;
+    string = "Janna";
+    cout << "string의 크기는 : " << string.Size() << endl;
+    string = "Ailstar";
+    string.Compare("Ailstar");
 
     return 0;
 }
