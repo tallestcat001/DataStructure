@@ -1,75 +1,41 @@
 ﻿#include <iostream>
 
-#pragma warnings(disable: 4996)
+#define SIZE 6
 
 using namespace std;
 
-class String
+template<typename KEY, typename VALUE>
+class HashTable
 {
 private:
-    char* container;
-    int size;
+    struct Node
+    {
+        KEY key;
+        VALUE value;
+        Node* next;
+    };
+
+    struct Bucket
+    {
+        Node* head;
+        int count;
+    };
+
+    Bucket bucket[SIZE];
+
 public:
-    String()
+    HashTable()
     {
-        size = 0;
-        container = nullptr;
-    }
-
-    void operator = (const char* content)
-    {
-        int arraysize = strlen(content) + 1;
-        size = strlen(content);
-
-        if (container == nullptr)
+        for (int i = 0; i < SIZE; i++)
         {
-            container = new char[arraysize];
-
-            for (int i = 0; i < arraysize; i++)
-            {
-                container[i] = content[i];
-            }
-        }
-        else
-        {
-            char* newcontainer = new char[arraysize];
-
-            for (int i = 0; i < arraysize; i++)
-            {
-                newcontainer[i] = content[i];
-            }
-
-            delete container;
-
-            container = newcontainer;
+            bucket[i].count = 0;
+            bucket[i].head = nullptr;
         }
     }
-
-    char operator [] (int index)
-    {
-        return container[index];
-    }
-
-    int& Size()
-    {
-        return size;
-    }
-
-    int Compare(const char * content)
-    {
-        
-    }
-
 };
 
 int main()
 {
     
-    String string;
-    string = "Janna";
-    cout << "string의 크기는 : " << string.Size() << endl;
-    string = "Ailstar";
-    string.Compare("Ailstar");
-
     return 0;
 }
