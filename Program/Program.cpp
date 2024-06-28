@@ -1,94 +1,23 @@
 ﻿#include <iostream>
 
-#define SIZE 8
-
 using namespace std;
-
-template <typename T>
-class Heap
-{
-private:
-    T container[SIZE];
-    int index;
-public:
-    Heap()
-    {
-        for (int i = 0; i < SIZE; i++)
-        {
-            container[i] = NULL;
-        }
-
-        index = 0;
-    }
-
-    void Insert(T data)
-    {
-        if (index >= SIZE)
-        {
-            cout << "Heap Overflow" << endl;
-        }
-        else
-        {
-            container[++index] = data;
-
-            int child = index;
-            int parent = child / 2;
-
-            while (child > 1)
-            {
-                if (container[parent] < container[child])
-                {
-                    std::swap(container[parent], container[child]);
-                }
-
-                child = parent;
-                parent = child / 2;
-
-            }
-        }
-
-    }
-
-    T Remove()
-    {
-        if (index <= 0)
-        {
-            cout << "Heap is Empty" << endl;
-            exit(1);
-        }
-        T result = container[1];
-
-        container[1] = container[index];
-
-        container[index] = NULL;
-
-        index--;
-        
-        int parent = container[1];
-        int parentLeft = parent * 2;
-        int parentRight = parent * 2 + 1;
-
-
-
-    }
-
-    void Show()
-    {
-        for (int i = 1; i <= index; i++)
-        {
-            cout << container[i] << " ";
-        }
-    }
-};
 
 int main()
 {
-    Heap<int> heap;
-    heap.Insert(6);
-    heap.Insert(7);
-    heap.Insert(2);
-    heap.Insert(10);
-    heap.Show();
+
+#pragma region 인접 리스트
+
+    // 그래프의 각 정점에 인접한 정점들을 연결 리스트로 표현하는 방법.
+
+    // 장점
+    // 그래프의 모든 간선의 수를 o(v + e)로 표현 가능.
+
+    // 단점
+    // 두 정점을 연결하는 간선을 조회하거나 정점의 차수를 알기 위해서는 정점의 인접 리스트를 모두 탐색해야하므로,
+    // 정점의 차수만큼의 시간이 필요.
+
+#pragma endregion
+
 
     return 0;
 }
