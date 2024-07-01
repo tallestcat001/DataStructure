@@ -27,7 +27,9 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class10th (Binary Tree)", "
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class11th (Heap)", "..\Class11th (Heap)\Class11th (Heap).vcxproj", "{BA7F6371-D20B-4E48-98CE-2DB311D6068B}"
 EndProject
-Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class12th (Graph Adjacency Matrix)", "..\Class12th (Graph Adjacency Matrix)\Class12th (Graph Adjacency Matrix).vcxproj", "{89E34A28-FDA7-419C-9E82-2B29CD8D3FB0}"
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class12th (Graph Adjancency Matrix)", "..\Class12th (Graph Adjacency Matrix)\Class12th (Graph Adjacency Matrix).vcxproj", "{89E34A28-FDA7-419C-9E82-2B29CD8D3FB0}"
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class13th (Graph Adjancency List)", "..\Class13th (Graph Adjancency List)\Class13th (Graph Adjancency List).vcxproj", "{439EFB37-7F3D-46F5-BE88-109098616E7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -141,6 +143,14 @@ Global
 		{89E34A28-FDA7-419C-9E82-2B29CD8D3FB0}.Release|x64.Build.0 = Release|x64
 		{89E34A28-FDA7-419C-9E82-2B29CD8D3FB0}.Release|x86.ActiveCfg = Release|Win32
 		{89E34A28-FDA7-419C-9E82-2B29CD8D3FB0}.Release|x86.Build.0 = Release|Win32
+		{439EFB37-7F3D-46F5-BE88-109098616E7E}.Debug|x64.ActiveCfg = Debug|x64
+		{439EFB37-7F3D-46F5-BE88-109098616E7E}.Debug|x64.Build.0 = Debug|x64
+		{439EFB37-7F3D-46F5-BE88-109098616E7E}.Debug|x86.ActiveCfg = Debug|Win32
+		{439EFB37-7F3D-46F5-BE88-109098616E7E}.Debug|x86.Build.0 = Debug|Win32
+		{439EFB37-7F3D-46F5-BE88-109098616E7E}.Release|x64.ActiveCfg = Release|x64
+		{439EFB37-7F3D-46F5-BE88-109098616E7E}.Release|x64.Build.0 = Release|x64
+		{439EFB37-7F3D-46F5-BE88-109098616E7E}.Release|x86.ActiveCfg = Release|Win32
+		{439EFB37-7F3D-46F5-BE88-109098616E7E}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

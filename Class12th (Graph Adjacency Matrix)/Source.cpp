@@ -121,17 +121,6 @@ int main()
 
     AdjacencyMatrix<char> am;
 
-    am.Insert('A');
-    am.Insert('B');
-    am.Insert('C');
-    am.Insert('D');
-
-    am.Connect(0, 1);
-    am.Connect(0, 2);
-    am.Connect(2, 3);
-
-    am.Show();
-
 #pragma endregion
 
     return 0;
