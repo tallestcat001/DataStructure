@@ -31,6 +31,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class12th (Graph Adjancency
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class13th (Graph Adjancency List)", "..\Class13th (Graph Adjancency List)\Class13th (Graph Adjancency List).vcxproj", "{439EFB37-7F3D-46F5-BE88-109098616E7E}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Class14th (BinaySearchTree)", "..\Class14th (BinaySearchTree)\Class14th (BinaySearchTree).vcxproj", "{AAB1F7E1-0E1D-4CED-AB6B-942DB74048B3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -151,6 +153,14 @@ Global
 		{439EFB37-7F3D-46F5-BE88-109098616E7E}.Release|x64.Build.0 = Release|x64
 		{439EFB37-7F3D-46F5-BE88-109098616E7E}.Release|x86.ActiveCfg = Release|Win32
 		{439EFB37-7F3D-46F5-BE88-109098616E7E}.Release|x86.Build.0 = Release|Win32
+		{AAB1F7E1-0E1D-4CED-AB6B-942DB74048B3}.Debug|x64.ActiveCfg = Debug|x64
+		{AAB1F7E1-0E1D-4CED-AB6B-942DB74048B3}.Debug|x64.Build.0 = Debug|x64
+		{AAB1F7E1-0E1D-4CED-AB6B-942DB74048B3}.Debug|x86.ActiveCfg = Debug|Win32
+		{AAB1F7E1-0E1D-4CED-AB6B-942DB74048B3}.Debug|x86.Build.0 = Debug|Win32
+		{AAB1F7E1-0E1D-4CED-AB6B-942DB74048B3}.Release|x64.ActiveCfg = Release|x64
+		{AAB1F7E1-0E1D-4CED-AB6B-942DB74048B3}.Release|x64.Build.0 = Release|x64
+		{AAB1F7E1-0E1D-4CED-AB6B-942DB74048B3}.Release|x86.ActiveCfg = Release|Win32
+		{AAB1F7E1-0E1D-4CED-AB6B-942DB74048B3}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
