@@ -95,6 +95,102 @@ public:
         }
     }
 
+    void Remove(T data)
+    {
+        Node* currentnode = root;
+        Node* parentnode = nullptr;
+
+        if (root == nullptr)
+        {
+            cout << "BinarySearchTree is Empty" << endl;
+        }
+        else
+        {
+            while (currentnode != nullptr && currentnode->data != data)
+            {
+                if (currentnode->data > data)
+                {
+                    parentnode = currentnode;
+                    currentnode = currentnode->left;
+                }
+                else
+                {
+                    parentnode = currentnode;
+                    currentnode = currentnode->right;
+                }
+            }
+
+            if (currentnode == nullptr)
+            {
+                cout << "Data Not Found in the BinarySearchTree" << endl;
+            }
+            else if (currentnode->left = nullptr && currentnode->right == nullptr)
+            {
+                if (parentnode != nullptr)
+                {
+                    if (parentnode->left == currentnode)
+                    {
+                        parentnode->left = nullptr;
+                    }
+                    else
+                    {
+                        parentnode->right = nullptr;
+                    }
+                }
+                else
+                {
+                    root = nullptr;
+                }
+            }
+            else if (currentnode->left == nullptr || currentnode->right == nullptr)
+            {
+                Node* childnode = nullptr;
+
+                if (currentnode->left != nullptr)
+                {
+                    childnode = currentnode->left;
+                }
+                else
+                {
+                    childnode = currentnode->right;
+                }
+
+                if (parentnode != nullptr)
+                {
+                    if (parentnode->left == currentnode)
+                    {
+                        parentnode->left = childnode;
+                    }
+                    else
+                    {
+                        parentnode->right = childnode;
+                    }
+                }
+            }
+            else
+            {
+                Node* childenode = currentnode->right;
+                Node* tracenode = childenode;
+
+                while (childenode->left != nullptr)
+                {
+                    tracenode = childenode;
+                    childenode = childenode->left;
+                }
+
+                currentnode->data = childenode->data;
+
+                tracenode->left = childenode->right;
+
+                delete childenode;
+
+                return;
+            }
+
+            delete currentnode;
+        }
+    }
+
     bool Find(T data)
     {
         Node* currentnode = root;
@@ -150,15 +246,11 @@ int main()
 {
     BinarySearchTree<int> BST;
 
-
-
     BST.Insert(10);
     BST.Insert(7);
+    BST.Insert(15);
+    BST.Insert(3);
     BST.Insert(9);
-    BST.Insert(4);
-    BST.Insert(5);
-
-    cout << BST.Find(9) << endl;
 
     BST.Inorder(BST.Root());
 
